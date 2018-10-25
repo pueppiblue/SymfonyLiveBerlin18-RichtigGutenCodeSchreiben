@@ -8,6 +8,7 @@ spl_autoload_register(
         if ($classes === null) {
             $classes = array(
                 'example\\exception\\exception' => '/exceptions/Exception.php',
+                'example\\exception\\invalidcapacityexception' => '/exceptions/InvalidCapacityException.php',
                 'example\\exception\\invalidcontaineridexception' => '/exceptions/InvalidContainerIdException.php',
                 'example\\exception\\invalidnameexception' => '/exceptions/InvalidNameException.php',
                 'example\\value\\container' => '/Value/Container.php',
