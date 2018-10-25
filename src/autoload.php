@@ -14,7 +14,8 @@ spl_autoload_register(
                 'example\\value\\container' => '/Value/Container.php',
                 'example\\value\\containerid' => '/Value/ContainerId.php',
                 'example\\value\\port' => '/Value/Port.php',
-                'example\\value\\ship' => '/Value/Ship.php'
+                'example\\value\\ship' => '/Value/Ship.php',
+                'example\\value\\shippingcompany' => '/Value/ShippingCompany.php'
             );
         }
         $cn = strtolower($class);
