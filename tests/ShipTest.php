@@ -17,7 +17,7 @@ final class ShipTest extends TestCase
     {
         $name = 'U.S.S. Sinus';
 
-        $ship = Ship::fromString($name);
+        $ship = Ship::fromStringAndContainerCapacityAndPosition($name, 10, 'unterwegs');
 
         $this->assertEquals($name, $ship->name());
     }
@@ -29,30 +29,41 @@ final class ShipTest extends TestCase
     {
         $this->expectException(InvalidNameException::class);
 
-        Ship::fromString($name);
+        Ship::fromStringAndContainerCapacityAndPosition($name, 10, 'unterwegs');
     }
 
-    public function test_has_a_container_capacity():void
+    public function test_has_a_position(): void
+    {
+        $name = 'U.S.S. Sinus';
+        $capacity = 10;
+        $position = 'unterwegs';
+
+        $ship = Ship::fromStringAndContainerCapacityAndPosition($name, $capacity, $position);
+
+        $this->assertEquals($position, $ship->position());
+    }
+
+    public function test_has_a_container_capacity(): void
     {
         $capacity = 10;
 
-        $ship = Ship::fromStringAndContainerCapacity('U.S.S. Sinus', $capacity);
+        $ship = Ship::fromStringAndContainerCapacityAndPosition('USS Sinus', $capacity, 'unterwegs');
 
         $this->assertEquals($capacity, $ship->containerCapacity());
     }
 
-    public function test_container_capacity_cannot_be_negative():void
+    public function test_container_capacity_cannot_be_negative(): void
     {
         $this->expectException(InvalidCapacityException::class);
 
-        Ship::fromStringAndContainerCapacity('USS', -10);
+        Ship::fromStringAndContainerCapacityAndPosition('USS SINUS', -10, 'unterwegs');
     }
 
     public function empty_name_provider(): array
     {
         return [
             [''],
-            [' ']
+            [' '],
         ];
     }
 
