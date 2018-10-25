@@ -7,6 +7,7 @@ namespace example\Test;
 
 use example\Exception\InvalidCapacityException;
 use example\Exception\InvalidNameException;
+use example\Value\Port;
 use example\Value\Ship;
 use PHPUnit\Framework\TestCase;
 
@@ -17,7 +18,7 @@ final class ShipTest extends TestCase
     {
         $name = 'U.S.S. Sinus';
 
-        $ship = Ship::fromStringAndContainerCapacityAndPosition($name, 10, 'unterwegs');
+        $ship = Ship::fromStringAndContainerCapacityAndPositionAndPort($name, 10, 'unterwegs', Port::fromString('Westhafen'));
 
         $this->assertEquals($name, $ship->name());
     }
@@ -29,8 +30,21 @@ final class ShipTest extends TestCase
     {
         $this->expectException(InvalidNameException::class);
 
-        Ship::fromStringAndContainerCapacityAndPosition($name, 10, 'unterwegs');
+        Ship::fromStringAndContainerCapacityAndPositionAndPort($name, 10, 'unterwegs', Port::fromString('Westhafen'));
     }
+
+    public function test_has_a_target_port(): void
+    {
+        $name = 'U.S.S. Sinus';
+        $capacity = 10;
+        $position = 'unterwegs';
+        $targetPort =  Port::fromString('Westhafen');
+
+        $ship = Ship::fromStringAndContainerCapacityAndPositionAndPort($name, $capacity, $position, $targetPort);
+
+        $this->assertEquals($targetPort , $ship->targetPort());
+    }
+
 
     public function test_has_a_position(): void
     {
@@ -38,7 +52,7 @@ final class ShipTest extends TestCase
         $capacity = 10;
         $position = 'unterwegs';
 
-        $ship = Ship::fromStringAndContainerCapacityAndPosition($name, $capacity, $position);
+        $ship = Ship::fromStringAndContainerCapacityAndPositionAndPort($name, $capacity, $position, Port::fromString('Westhafen'));
 
         $this->assertEquals($position, $ship->position());
     }
@@ -47,7 +61,7 @@ final class ShipTest extends TestCase
     {
         $capacity = 10;
 
-        $ship = Ship::fromStringAndContainerCapacityAndPosition('USS Sinus', $capacity, 'unterwegs');
+        $ship = Ship::fromStringAndContainerCapacityAndPositionAndPort('USS Sinus', $capacity, 'unterwegs', Port::fromString('Westhafen'));
 
         $this->assertEquals($capacity, $ship->containerCapacity());
     }
@@ -56,7 +70,7 @@ final class ShipTest extends TestCase
     {
         $this->expectException(InvalidCapacityException::class);
 
-        Ship::fromStringAndContainerCapacityAndPosition('USS SINUS', -10, 'unterwegs');
+        Ship::fromStringAndContainerCapacityAndPositionAndPort('USS SINUS', -10, 'unterwegs', Port::fromString('Westhafen'));
     }
 
     public function empty_name_provider(): array
@@ -66,5 +80,6 @@ final class ShipTest extends TestCase
             [' '],
         ];
     }
+
 
 }

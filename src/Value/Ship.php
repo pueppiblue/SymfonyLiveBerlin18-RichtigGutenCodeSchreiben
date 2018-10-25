@@ -16,22 +16,24 @@ final class Ship
     private $containerCapacity;
     /** @var string */
     private $position;
+    /** @var Port */
+    private $targetPort;
 
-    private function __construct(string $name, int $containerCapacity, string $position)
+    private function __construct(string $name, int $containerCapacity, string $position, Port $targetPort)
     {
         $this->name = $name;
         $this->containerCapacity = $containerCapacity;
         $this->position = $position;
+        $this->targetPort = $targetPort;
     }
 
-    public static function fromStringAndContainerCapacityAndPosition(string $name, int $capacity, string $position): self
+    public static function fromStringAndContainerCapacityAndPositionAndPort(string $name, int $capacity, string $position, Port $targetPort): self
     {
         self::ensureNameIsNotEmpty($name);
         self::ensureCapacityIsGreaterThanZero($capacity);
 
-        return new self($name, $capacity, $position);
+        return new self($name, $capacity, $position, $targetPort);
     }
-
 
     public function name(): string
     {
@@ -46,6 +48,11 @@ final class Ship
     public function position(): string
     {
         return $this->position;
+    }
+
+    public function targetPort(): Port
+    {
+        return $this->targetPort;
     }
 
     private static function ensureNameIsNotEmpty(string $name): void
