@@ -12,7 +12,8 @@ spl_autoload_register(
                 'example\\exception\\invalidnameexception' => '/exceptions/InvalidNameException.php',
                 'example\\value\\container' => '/Value/Container.php',
                 'example\\value\\containerid' => '/Value/ContainerId.php',
-                'example\\value\\port' => '/Value/Port.php'
+                'example\\value\\port' => '/Value/Port.php',
+                'example\\value\\ship' => '/Value/Ship.php'
             );
         }
         $cn = strtolower($class);
