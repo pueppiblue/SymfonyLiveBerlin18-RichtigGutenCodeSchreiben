@@ -5,7 +5,9 @@
  * (c) 2018 thePHP.cc. All rights reserved.
  */
 
-namespace example;
+namespace example\Value;
+
+use example\Exception\InvalidNameException;
 
 final class Port
 {
@@ -14,11 +16,16 @@ final class Port
      */
     private $name;
 
-    public function __construct(string $name)
+    private function __construct(string $name)
     {
-        $this->ensureNameIsNotEmpty($name);
-
         $this->name = $name;
+    }
+
+    public static function fromString(string $name)
+    {
+        self::ensureNameIsNotEmpty($name);
+
+        return new self($name);
     }
 
     public function name(): string
@@ -26,7 +33,7 @@ final class Port
         return $this->name;
     }
 
-    private function ensureNameIsNotEmpty(string $name): void
+    private static function ensureNameIsNotEmpty(string $name): void
     {
         if (empty(\trim($name))) {
             throw new InvalidNameException('Name of port must not be empty');

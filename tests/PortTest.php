@@ -4,12 +4,14 @@
  *
  * (c) 2018 thePHP.cc. All rights reserved.
  */
-namespace example;
+namespace example\Test;
 
+use example\Exception\InvalidNameException;
+use example\Value\Port;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \example\Port
+ * @covers \example\Value\Port
  */
 final class PortTest extends TestCase
 {
@@ -17,7 +19,7 @@ final class PortTest extends TestCase
     {
         $name = 'Westhafen';
 
-        $port = new Port($name);
+        $port = Port::fromString($name);
 
         $this->assertEquals($name, $port->name());
     }
@@ -29,7 +31,7 @@ final class PortTest extends TestCase
     {
         $this->expectException(InvalidNameException::class);
 
-        new Port($name);
+        Port::fromString($name);
     }
 
     public function empty_name_provider(): array

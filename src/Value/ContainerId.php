@@ -5,7 +5,9 @@
  * (c) 2018 thePHP.cc. All rights reserved.
  */
 
-namespace example;
+namespace example\Value;
+
+use example\Exception\InvalidContainerIdException;
 
 final class ContainerId
 {
@@ -46,6 +48,16 @@ final class ContainerId
         );
     }
 
+    public function toString(): string
+    {
+        return sprintf(
+            '%s%s%s%s',
+            $this->ownerCode,
+            $this->cargoIdentifier,
+            $this->serialNumber,
+            $this->checkDigit
+        );
+    }
     /**
      * @throws InvalidContainerIdException
      */

@@ -5,15 +5,25 @@
  * (c) 2018 thePHP.cc. All rights reserved.
  */
 
-namespace example;
+namespace example\Test;
 
+use example\Exception\InvalidContainerIdException;
+use example\Value\ContainerId;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \example\ContainerId
+ * @covers \example\Value\ContainerId
  */
 final class ContainerIdTest extends TestCase
 {
+    public function test_to_string(): void
+    {
+        $id = 'CSQU3054383';
+        $containerId = ContainerId::fromString($id);
+
+        $this->assertEquals($id, $containerId->toString());
+    }
+
     public function testCanBeCreatedFromValidString(): void
     {
         $id = ContainerId::fromString('CSQU3054383');

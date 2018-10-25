@@ -4,7 +4,7 @@
  *
  * (c) 2018 thePHP.cc. All rights reserved.
  */
-namespace example;
+namespace example\Exception;
 
 interface Exception
 {
