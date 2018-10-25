@@ -13,7 +13,10 @@ spl_autoload_register(
                 'example\\exception\\invalidnameexception' => '/exceptions/InvalidNameException.php',
                 'example\\value\\container' => '/Value/Container.php',
                 'example\\value\\containerid' => '/Value/ContainerId.php',
+                'example\\value\\fleet' => '/Value/Fleet.php',
                 'example\\value\\port' => '/Value/Port.php',
+                'example\\value\\position' => '/Value/Position.php',
+                'example\\value\\sea' => '/Value/Sea.php',
                 'example\\value\\ship' => '/Value/Ship.php',
                 'example\\value\\shippingcompany' => '/Aggregate/ShippingCompany.php'
             );

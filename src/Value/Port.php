@@ -9,7 +9,7 @@ namespace example\Value;
 
 use example\Exception\InvalidNameException;
 
-final class Port
+final class Port implements Position
 {
     /**
      * @var string
